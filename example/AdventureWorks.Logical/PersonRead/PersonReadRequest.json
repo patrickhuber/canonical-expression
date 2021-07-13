@@ -1,0 +1,92 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$ref":  "#/definitions/PersonReadRequest",
+  "definitions": {
+    "PersonReadRequest": {
+      "type": "object",
+      "properties": {
+        "where": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonReadAnyOf"
+          }
+        },
+        "expand": {},
+        "select": {}
+      }
+    },
+    "PersonReadAnyOf": {
+      "type": "object",
+      "properties": {
+        "anyOf": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonReadAllOf"
+          }
+        }
+      }
+    },
+    "PersonReadAllOf": {
+      "type": "object",
+      "properties": {
+        "allOf": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "anyOf": [
+              {
+                "$ref": "#/definitions/PersonReadStringPredicate"
+              },
+              {
+                "$ref": "#/definitions/PersonReadGuidPredicate"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "PersonReadStringPredicate": {
+      "properties": {
+        "property": {
+          "$ref": "#/definitions/PersonReadStringProperty"
+        },
+        "operator": {
+          "$ref": "#/definitions/StringOperator"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "PersonReadGuidPredicate": {
+      "properties": {
+        "property": {
+          "$ref": "#/definitions/PersonReadGuidProperty"
+        },
+        "operator": {
+          "$ref": "#/definitions/GuidOperator"
+        },
+        "value": {
+          "type": "string",
+          "format": "uuid"
+        }
+      }
+    },
+    "PersonReadStringProperty": {
+      "type": "string",
+      "enum": [ "FirstName", "LastName" ]
+    },
+    "PersonReadGuidProperty": {
+      "type": "string",
+      "enum": [ "Id" ]
+    },
+    "StringOperator": {
+      "type": "string",
+      "enum": [ "Equal" ]
+    },
+    "GuidOperator": {
+      "type": "string",
+      "enum": [ "Equal" ]
+    }
+  }
+}

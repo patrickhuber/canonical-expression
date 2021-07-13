@@ -1,0 +1,1 @@
+[adventureworks schema](https://moidulhassan.files.wordpress.com/2014/07/adventureworks2008_schema.gif)
