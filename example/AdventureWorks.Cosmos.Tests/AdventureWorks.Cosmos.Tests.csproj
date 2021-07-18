@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <UserSecretsId>a34d60bd-78a3-4ac2-bffb-70606c47521d</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.3" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.3" />
+    <PackageReference Include="coverlet.collector" Version="3.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AdventureWorks.Cosmos\AdventureWorks.Cosmos.csproj" />
+    <ProjectReference Include="..\AdventureWorks.Logical.Tests\AdventureWorks.Logical.Tests.csproj" />
+    <ProjectReference Include="..\AdventureWorks.Logical\AdventureWorks.Logical.csproj" />
+  </ItemGroup>
+
+</Project>

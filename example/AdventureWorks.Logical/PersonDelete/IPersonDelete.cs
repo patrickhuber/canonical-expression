@@ -1,7 +1,9 @@
+using System.Threading.Tasks;
+
 namespace AdventureWorks.Logical.PersonDelete
 {
     public interface IPersonDelete
     {
-        PersonDeleteResponse Read(PersonDeleteRequest request);
+        Task<PersonDeleteResponse> DeleteAsync(PersonDeleteRequest request);
     }
 }

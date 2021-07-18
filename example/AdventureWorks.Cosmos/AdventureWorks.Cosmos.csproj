@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="LinqKit.Core" Version="1.1.24" />
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.20.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AdventureWorks.Logical\AdventureWorks.Logical.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
-﻿using AdventureWorks.Logical.PersonRead;
+﻿using AdventureWorks.Logical.PersonDelete;
+using AdventureWorks.Logical.PersonRead;
 using AdventureWorks.Logical.PersonWrite;
 using AdventureWorks.Logical.Updates;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AdventureWorks.Logical.Tests
 {
-    public class MockPersonService : IPersonRead, IPersonWrite
+    public class MockPersonService : IPersonRead, IPersonWrite, IPersonDelete
     {
         private readonly Dictionary<Guid, Person> _people;
 
@@ -136,27 +137,37 @@ namespace AdventureWorks.Logical.Tests
             var response = new PersonWriteResponse();
             var people = new List<Person>();
 
-            foreach (var personInput in request.Set)
+            if (request?.Set == null || request.Set.Length == 0)
             {
-                var isNew = personInput.Id is null;
-                Person person;
-                if (isNew)
-                    person = Create(personInput);
-                else
-                    person = Update(personInput);
-                _people[person.Id] = person;
-                people.Add(person);
+                response.People = Array.Empty<Person>();
+                return response;
             }
 
-            response.People = people.ToArray();
-            return response;
+            // match people to inputs
+            var matches =
+                from i in request.Set
+                join p in _people
+                    on i.Id ?? Guid.Empty equals p.Key into match
+                from m in match.DefaultIfEmpty()
+                select new { Person = m.Value, PersonInput = i };
+
+            var upserts = new List<Person>();
+            foreach (var update in matches)
+            {
+                var person = update.Person is null
+                    ? Create(update.PersonInput)
+                    : Update(update.Person, update.PersonInput);
+                _people[person.Id] = person;
+                upserts.Add(person);
+            }
+            return new PersonWriteResponse
+            { 
+                People = upserts.ToArray(),
+            };
         }
 
-        private Person Update(PersonInput personInput)
+        private Person Update(Person person, PersonInput personInput)
         {
-            // match by id
-            if (!_people.TryGetValue(personInput.Id.Value, out Person person))
-                return null;
             Map(personInput, person);
             return person;
         }
@@ -165,7 +176,7 @@ namespace AdventureWorks.Logical.Tests
         {
             var person = new Person
             {
-                Id = Guid.NewGuid()
+                Id = personInput.Id ?? Guid.NewGuid()
             };
             Map(personInput, person);
             return person;
@@ -186,6 +197,32 @@ namespace AdventureWorks.Logical.Tests
         private static bool IsSetAndNotNull<T>(UpdateBase<T> value)
         {
             return value != null && value.IsSet;
+        }
+
+        public Task<PersonDeleteResponse> DeleteAsync(PersonDeleteRequest request)
+        {
+            return Task.FromResult(Delete(request));
+        }
+
+        public PersonDeleteResponse Delete(PersonDeleteRequest request)
+        {
+            if (request?.Where is null)
+                return new PersonDeleteResponse
+                {
+                    People = Array.Empty<PersonDeleteResult>()
+                };
+
+            var removed = new List<PersonDeleteResult>();
+            foreach (var criteria in request.Where)
+                if (_people.Remove(criteria.Id))
+                    removed.Add(new PersonDeleteResult 
+                    { 
+                        Id = criteria.Id
+                    });
+            return new PersonDeleteResponse 
+            {
+                People = removed.ToArray()
+            };
         }
     }
 
