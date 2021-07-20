@@ -7,15 +7,14 @@ using Microsoft.Azure.Cosmos.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace AdventureWorks.Cosmos
 {
     public class CosmosPersonService : IPersonRead, IPersonWrite, IPersonDelete
     {
-        private CosmosClient _cosmosClient;
-        private Container _container;
+        private readonly CosmosClient _cosmosClient;
+        private readonly Container _container;
 
         public CosmosPersonService(CosmosClient cosmosClient, string databaseId = "AdventureWorksDB", string containerId = "People")
         {
@@ -25,6 +24,7 @@ namespace AdventureWorks.Cosmos
 
         public async Task<PersonReadResponse> ReadAsync(PersonReadRequest request)
         {
+            // For direct ID queries, some analysis can be done of the request. If it conforms to direct ID queryies, then change the Filter method
             var queryable = Filter(request);
             return await ProjectAsync(request, queryable);
         }
@@ -73,7 +73,7 @@ namespace AdventureWorks.Cosmos
             return queryable.Where(anyOfPredicateBuilder);
         }
 
-        private async Task<PersonReadResponse> ProjectAsync(PersonReadRequest request, IQueryable<Person> queryable)
+        private static async Task<PersonReadResponse> ProjectAsync(PersonReadRequest request, IQueryable<Person> queryable)
         {            
             var selectCount = request.Select is not null && request.Select.TotalCount;
             var response = new PersonReadResponse();

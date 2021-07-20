@@ -166,7 +166,7 @@ namespace AdventureWorks.Logical.Tests
             };
         }
 
-        private Person Update(Person person, PersonInput personInput)
+        private static Person Update(Person person, PersonInput personInput)
         {
             Map(personInput, person);
             return person;

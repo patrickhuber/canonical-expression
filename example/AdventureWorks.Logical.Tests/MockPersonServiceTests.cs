@@ -18,10 +18,12 @@ namespace AdventureWorks.Logical.Tests
 
         public List<Person> People { get; private set; }
 
+#pragma warning disable IDE0044 // Add readonly modifier
         private static Person BillBrasky = new() { FirstName = "Bill", LastName = "Brasky", Id = Guid.NewGuid() };
         private static Person TedRosevelt = new() { FirstName = "Ted", LastName = "Rosevelt", Id = Guid.NewGuid() };
         private static Person JamesKing = new() { FirstName = "James", LastName = "King", Id = Guid.NewGuid() };
         private static Person JamesDean = new() { FirstName = "James", LastName = "Dean", Id = Guid.NewGuid() };
+#pragma warning restore IDE0044 // Add readonly modifier
 
 
         private PersonServiceTester tester;

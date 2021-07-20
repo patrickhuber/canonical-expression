@@ -1,13 +1,10 @@
-﻿using AdventureWorks.Logical.PersonRead;
-using AdventureWorks.Logical.PersonWrite;
-using AdventureWorks.Logical.Tests;
+﻿using AdventureWorks.Logical.Tests;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AdventureWorks.Cosmos.Tests
@@ -19,13 +16,13 @@ namespace AdventureWorks.Cosmos.Tests
         private const string ContainerId = "People";
         private PersonServiceTester tester;
         private static CosmosClient  _cosmosClient;
-        private static Container _cosmosContainer;
 
-        private static Person BillBrasky = new() { FirstName = "Bill", LastName = "Brasky", Id = new ("b929faa9-c2a2-461a-afc8-652217ef2676") };
-        private static Person TedRosevelt = new() { FirstName = "Ted", LastName = "Rosevelt", Id = new ("b950d84b-3671-4ee9-a565-e9109b1d9be8") };
-        private static Person JamesKing = new() { FirstName = "James", LastName = "King", Id = new ("f0492aa2-80e8-432e-9a94-52ae2e0491da") };
-        private static Person JamesDean = new() { FirstName = "James", LastName = "Dean", Id = new ("3a018b9f-5517-4fe5-94f4-fc47dae3eae5") };
-        private static Person[] People = new Person[] { BillBrasky, TedRosevelt, JamesKing, JamesDean };
+
+        private static readonly Person BillBrasky = new() { FirstName = "Bill", LastName = "Brasky", Id = new ("b929faa9-c2a2-461a-afc8-652217ef2676") };
+        private static readonly Person TedRosevelt = new() { FirstName = "Ted", LastName = "Rosevelt", Id = new ("b950d84b-3671-4ee9-a565-e9109b1d9be8") };
+        private static readonly Person JamesKing = new() { FirstName = "James", LastName = "King", Id = new ("f0492aa2-80e8-432e-9a94-52ae2e0491da") };
+        private static readonly Person JamesDean = new() { FirstName = "James", LastName = "Dean", Id = new ("3a018b9f-5517-4fe5-94f4-fc47dae3eae5") };
+        private static readonly Person[] People = new Person[] { BillBrasky, TedRosevelt, JamesKing, JamesDean };
 
         [ClassInitialize]
 #pragma warning disable IDE0060 // Remove unused parameter
