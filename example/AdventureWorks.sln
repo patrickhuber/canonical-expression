@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventureWorks.Logical.Json
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventureWorks.Logical.Json.Tests", "AdventureWorks.Logical.Json.Tests\AdventureWorks.Logical.Json.Tests.csproj", "{6A641188-7C63-4145-8D56-70449452A880}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureWorks.Cosmos.Tests", "AdventureWorks.Cosmos.Tests\AdventureWorks.Cosmos.Tests.csproj", "{5D4DE11E-E6F6-433D-8D27-9710D33C3880}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventureWorks.Cosmos.Tests", "AdventureWorks.Cosmos.Tests\AdventureWorks.Cosmos.Tests.csproj", "{5D4DE11E-E6F6-433D-8D27-9710D33C3880}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureWorks.FunctionApp", "AdventureWorks.FunctionApp\AdventureWorks.FunctionApp.csproj", "{917926D9-AE99-4B09-A621-2A8C2146B13C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +113,18 @@ Global
 		{5D4DE11E-E6F6-433D-8D27-9710D33C3880}.Release|x64.Build.0 = Release|Any CPU
 		{5D4DE11E-E6F6-433D-8D27-9710D33C3880}.Release|x86.ActiveCfg = Release|Any CPU
 		{5D4DE11E-E6F6-433D-8D27-9710D33C3880}.Release|x86.Build.0 = Release|Any CPU
+		{917926D9-AE99-4B09-A621-2A8C2146B13C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{917926D9-AE99-4B09-A621-2A8C2146B13C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{917926D9-AE99-4B09-A621-2A8C2146B13C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{917926D9-AE99-4B09-A621-2A8C2146B13C}.Debug|x64.Build.0 = Debug|Any CPU
+		{917926D9-AE99-4B09-A621-2A8C2146B13C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{917926D9-AE99-4B09-A621-2A8C2146B13C}.Debug|x86.Build.0 = Debug|Any CPU
+		{917926D9-AE99-4B09-A621-2A8C2146B13C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{917926D9-AE99-4B09-A621-2A8C2146B13C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{917926D9-AE99-4B09-A621-2A8C2146B13C}.Release|x64.ActiveCfg = Release|Any CPU
+		{917926D9-AE99-4B09-A621-2A8C2146B13C}.Release|x64.Build.0 = Release|Any CPU
+		{917926D9-AE99-4B09-A621-2A8C2146B13C}.Release|x86.ActiveCfg = Release|Any CPU
+		{917926D9-AE99-4B09-A621-2A8C2146B13C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
